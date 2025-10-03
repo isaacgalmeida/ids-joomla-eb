@@ -7,7 +7,7 @@ RUN apt-get update && \
     curl
 
 # Criar um arquivo customizado de configuração do PHP para permitir uploads de até 20 MB
-RUN echo "upload_max_filesize = 20M\npost_max_size = 20M" > /usr/local/etc/php/conf.d/custom-php.ini
+RUN echo "upload_max_filesize = 30M\npost_max_size = 30M" > /usr/local/etc/php/conf.d/custom-php.ini
 
 # Definir o diretório de trabalho
 WORKDIR /var/www/html
