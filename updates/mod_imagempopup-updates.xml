@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+	<!-- Versão 2.0.0 - Joomla 5.4+ e 6.x -->
+	<update>
+		<name>Popup de Imagem</name>
+		<description>Popup de Imagem - Compatível com Joomla 6.x</description>
+		<element>mod_imagempopup</element>
+		<type>module</type>
+		<client>site</client>
+		<version>2.0.0</version>
+		<infourl title="Módulo Popup de Imagem">https://github.com/astatonn/ids-joomla-eb</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">
+				https://github.com/astatonn/ids-joomla-eb/releases/download/v2.0.0/mod_imagempopup.zip
+			</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer>3º Sgt Souza Lima</maintainer>
+		<maintainerurl>https://github.com/astatonn</maintainerurl>
+		<targetplatform name="joomla" version="(5\.(4|5|6|7|8|9)|6\.[0-9]+)" />
+		<php_minimum>8.3.0</php_minimum>
+		<changelog>
+			<![CDATA[
+				<h3>Versão 2.0.0 - Outubro 2025</h3>
+				<ul>
+					<li>Compatibilidade com Joomla 6.x</li>
+					<li>Requisito mínimo: PHP 8.3 e Joomla 5.4+</li>
+					<li>Sistema de atualizações automáticas</li>
+				</ul>
+			]]>
+		</changelog>
+	</update>
+</updates>

@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension type="package" version="4.0" method="upgrade">
+<extension type="package" method="upgrade">
     <name>IDS Joomla EB Package</name>
     <packagename>ids_joomla_eb</packagename>
-    <creationDate>April 2025</creationDate>
+    <creationDate>October 2025</creationDate>
     <author>Sgt Souza Lima</author>
     <authorEmail>lucas.lima.rk@gmail.com</authorEmail>
     <authorUrl>https://astatonn.com</authorUrl>
     <copyright>Copyright (C) 2025 Todos os direitos reservados.</copyright>
     <license>GNU General Public License version 2 or later</license>
-    <description>Pacote de instalação completo do IDS Joomla EB incluindo template, componentes e módulos</description>
-    <version>1.0.0</version>
+    <description>PKG_IDS_JOOMLA_EB_XML_DESCRIPTION</description>
+    <version>2.0.0</version>
+
+    <!-- Namespace para suporte ao Joomla 5+ -->
+    <namespace path="src">IDS\Package\IDSJoomlaEB</namespace>
+
+    <!-- Scripts de instalação -->
+    <scriptfile>script.php</scriptfile>
+
+    <!-- Arquivos de idioma do pacote -->
+    <languages folder="language">
+        <language tag="en-GB">en-GB.pkg_ids_joomla_eb.ini</language>
+        <language tag="en-GB">en-GB.pkg_ids_joomla_eb.sys.ini</language>
+        <language tag="pt-BR">pt-BR.pkg_ids_joomla_eb.ini</language>
+        <language tag="pt-BR">pt-BR.pkg_ids_joomla_eb.sys.ini</language>
+    </languages>
 
     <files folder="packages">
         <!-- Template -->

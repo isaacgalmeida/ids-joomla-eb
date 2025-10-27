@@ -19,18 +19,19 @@ use Joomla\CMS\Language\Text;
 class pkg_ids_joomla_ebInstallerScript extends InstallerScript
 {
     /**
-     * Minimum PHP version required
+     * Minimum PHP version required to run Joomla 6
      *
      * @var    string
      */
-    protected $minimumPhp = '7.4.0';
+    protected $minimumPhp = '8.3.0';
 
     /**
      * Minimum Joomla version required
+     * Compatible with Joomla 5.4+ and Joomla 6.x
      *
      * @var    string
      */
-    protected $minimumJoomla = '4.0.0';
+    protected $minimumJoomla = '5.4.0';
 
     /**
      * List of required extensions
@@ -57,7 +58,33 @@ class pkg_ids_joomla_ebInstallerScript extends InstallerScript
         }
 
         $app = Factory::getApplication();
-        $app->enqueueMessage(Text::_('PKG_IDS_JOOMLA_EB_PREFLIGHT_' . strtoupper($type) . '_MESSAGE'));
+
+        // Verificar compatibilidade com Joomla 6
+        $jVersion = new \Joomla\CMS\Version();
+        $joomlaVersion = $jVersion->getShortVersion();
+
+        // Informar sobre compatibilidade com Joomla 6
+        if (version_compare($joomlaVersion, '6.0', '>=')) {
+            $app->enqueueMessage(
+                Text::sprintf(
+                    'Esta instalação está utilizando Joomla %s. '
+                    . 'Recomenda-se habilitar o plugin "Behaviour - Backward Compatibility 6" para melhor compatibilidade.',
+                    $joomlaVersion
+                ),
+                'info'
+            );
+        }
+
+        // Verificar se PHP 8.3+ está instalado
+        $phpVersion = PHP_VERSION;
+        if (version_compare($phpVersion, '8.3.0', '>=')) {
+            $app->enqueueMessage(
+                Text::sprintf('PHP %s detectado - Requisito atendido ✓', $phpVersion),
+                'message'
+            );
+        }
+
+        $app->enqueueMessage(Text::_('PKG_IDS_JOOMLA_EB_PREFLIGHT_' . strtoupper($type) . '_MESSAGE'), 'message');
 
         return true;
     }
@@ -75,13 +102,39 @@ class pkg_ids_joomla_ebInstallerScript extends InstallerScript
         if (!parent::postflight($type, $parent)) {
             return false;
         }
-        
+
         $app = Factory::getApplication();
-        
+
         if ($type === 'install' || $type === 'update') {
-            $app->enqueueMessage(Text::_('PKG_IDS_JOOMLA_EB_POSTFLIGHT_' . strtoupper($type) . '_MESSAGE'));
+            $app->enqueueMessage(Text::_('PKG_IDS_JOOMLA_EB_POSTFLIGHT_' . strtoupper($type) . '_MESSAGE'), 'success');
+
+            // Mostrar informações sobre atualizações automáticas
+            if ($type === 'install' || $type === 'update') {
+                $app->enqueueMessage(
+                    '<h4>Sistema de Atualizações Automáticas</h4>'
+                    . '<p>Este pacote e todas as suas extensões agora suportam atualizações automáticas via Joomla Update System.</p>'
+                    . '<ul>'
+                    . '<li>Acesse <strong>Sistema → Atualizar → Extensões</strong> para verificar atualizações</li>'
+                    . '<li>Todas as atualizações são baixadas diretamente do repositório GitHub</li>'
+                    . '<li>Changelog disponível para cada atualização</li>'
+                    . '</ul>'
+                    . '<p><strong>Versão instalada:</strong> 2.0.0 (Compatível com Joomla 5.4+ e 6.x)</p>',
+                    'info'
+                );
+            }
+
+            // Lista de extensões instaladas
+            $app->enqueueMessage(
+                '<h4>Extensões Incluídas neste Pacote</h4>'
+                . '<ul>'
+                . '<li><strong>Template:</strong> IDS Gov - Exército Brasileiro (govbr-ds)</li>'
+                . '<li><strong>Componentes:</strong> Aniversariantes, PagTesouro</li>'
+                . '<li><strong>Módulos:</strong> Aniversariantes, Popup de Imagem, Feed Instagram, Links, Leia Mais, Vídeos</li>'
+                . '</ul>',
+                'message'
+            );
         }
-        
+
         return true;
     }
 }

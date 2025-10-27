@@ -18,7 +18,77 @@
   <h1>Sobre o Template</h1>
 </div>
 
-Este template foi criado a partir das especificações disponíveis em https://www.gov.br/ds/, tendo em vista a compatibilidade com a atual versão do Joomla! (5.x, neste momento)
+## 🎉 Versão 2.0 - Compatível com Joomla 6
+
+[![Versão](https://img.shields.io/badge/vers%C3%A3o-2.0.0-blue.svg)](https://github.com/astatonn/ids-joomla-eb/releases/tag/v2.0.0)
+[![Joomla](https://img.shields.io/badge/Joomla-5.4%2B%20%7C%206.x-green.svg)](https://www.joomla.org)
+[![PHP](https://img.shields.io/badge/PHP-8.3%2B-purple.svg)](https://www.php.net)
+[![Licença](https://img.shields.io/badge/licen%C3%A7a-MIT%20%7C%20GPL%20v2-lightgrey.svg)](LICENSE)
+
+Este template foi criado a partir das especificações disponíveis em https://www.gov.br/ds/, com **compatibilidade total com Joomla 5.4+ e Joomla 6.x**.
+
+### ✨ Novidades da Versão 2.0
+
+- ✅ **Compatibilidade com Joomla 6.x** - Totalmente testado e funcional
+- ✅ **Atualizações Automáticas** - Sistema integrado de updates via Joomla
+- ✅ **PHP 8.3+** - Código modernizado para máxima performance
+- ✅ **Versionamento Semântico** - Seguindo padrões da indústria
+- ✅ **9 Extensões Incluídas** - 1 template, 2 componentes, 6 módulos
+
+### 📦 O que está incluído
+
+| Tipo | Nome | Versão | Descrição |
+|------|------|--------|-----------|
+| 📄 **Template** | IDS Gov - EB | 2.0.0 | Baseado no Padrão Digital de Governo |
+| 🧩 **Componente** | Aniversariantes | 2.0.0 | Gerenciamento de aniversariantes |
+| 🧩 **Componente** | PagTesouro | 2.0.0 | Sistema de gestão de pagamentos |
+| 📦 **Módulo** | mod_aniver | 2.0.0 | Seção de aniversariantes |
+| 📦 **Módulo** | mod_imagempopup | 2.0.0 | Popup de imagem |
+| 📦 **Módulo** | mod_instafeed | 2.0.0 | Feed do Instagram |
+| 📦 **Módulo** | mod_links | 2.0.0 | Seção de links customizada |
+| 📦 **Módulo** | mod_readmorenews | 2.0.0 | Botão leia mais |
+| 📦 **Módulo** | mod_videosiframe | 2.0.0 | Carrossel de vídeos YouTube |
+
+### 📋 Requisitos
+
+- **Joomla:** 5.4+ ou 6.x
+- **PHP:** 8.3 ou superior
+- **MySQL:** 5.7+ ou 8.0+
+- **Apache/Nginx** com mod_rewrite habilitado
+
+### 🚀 Instalação Rápida
+
+1. **Baixe a última versão:**
+   ```
+   https://github.com/astatonn/ids-joomla-eb/releases/latest
+   ```
+
+2. **Instale via Joomla:**
+   - Sistema → Instalar → Extensões
+   - Arraste o arquivo `pkg_ids_joomla_eb.zip`
+   - Aguarde a instalação
+
+3. **Ative o template:**
+   - Sistema → Gerenciar → Templates de Site
+   - Selecione "IDS Gov - Exército Brasileiro"
+   - Clique em "Tornar Padrão"
+
+### 🔄 Sistema de Atualizações Automáticas
+
+Esta versão implementa atualizações automáticas:
+
+1. Acesse **Sistema → Atualizar → Extensões**
+2. Clique em **Verificar Atualizações**
+3. Atualize com um clique quando disponível
+
+Todas as extensões são atualizadas individualmente através do Joomla Update System.
+
+### 📚 Documentação
+
+- **[Wiki](https://github.com/astatonn/ids-joomla-eb/wiki)** - Guia completo de instalação e uso
+- **[CHANGELOG.md](CHANGELOG.md)** - Histórico de mudanças
+- **[MIGRATION.md](MIGRATION.md)** - Guia de migração para v2.0
+- **[Issues](https://github.com/astatonn/ids-joomla-eb/issues)** - Reporte problemas
 
 ## Demonstração
 Este template está atualmente em uso em alguns dos sites listados abaixo:
