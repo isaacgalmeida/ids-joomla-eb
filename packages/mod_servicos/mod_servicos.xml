@@ -10,6 +10,7 @@
 	<namespace>Joomla\Module\Servicos</namespace>
 	<files>
 		<filename module="mod_servicos">mod_servicos.xml</filename>
+		<filename>mod_servicos.php</filename>
 		<folder>services</folder>
 		<folder>src</folder>
 		<folder>tmpl</folder>
@@ -29,6 +30,16 @@
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
 				</field>
+
+				<field
+					name="count"
+					type="number"
+					label="MOD_SERVICOS_COUNT_LABEL"
+					description="MOD_SERVICOS_COUNT_DESC"
+					default="5"
+					min="1"
+					max="20"
+				/>
 			</fieldset>
 		</fields>
 	</config>
