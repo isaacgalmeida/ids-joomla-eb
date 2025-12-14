@@ -37,7 +37,7 @@ use Joomla\CMS\Layout\LayoutHelper;
                         <a href="javascript:void(0);"
                             onclick="return Joomla.listItemTask('cb<?php echo $i; ?>', '<?php echo $task; ?>')"
                             class="btn btn-micro <?php echo $class; ?>"
-                            title="<?php echo HTMLHelper::_('tooltip', 'Toggle featured'); ?>">
+                            title="<?php echo \Joomla\CMS\Language\Text::_('COM_SERVICOS_TOGGLE_FEATURED'); ?>">
                             <i class="<?php echo $icon; ?>" aria-hidden="true"></i>
                         </a>
                     </td>

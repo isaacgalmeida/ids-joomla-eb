@@ -1,10 +1,12 @@
-<?php
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Language\Text;
 
 /** @var array $items */
-?>
+echo '<div style="background:red;color:white;padding:10px;">DEBUG: Módulo Carregado. Itens: ' . (isset($items) ?
+    count($items) : 'NULL') . '</div>';
+// DEBUG: Uncomment to see if module is rendering
+// echo '<!-- Module Debug: Items Count: ' . (isset($items) ? count($items) : 'Not Set') . ' -->';
 <?php if (!empty($items)): ?>
     <div class="row">
         <?php foreach ($items as $item): ?>
@@ -44,7 +46,7 @@ use Joomla\CMS\Language\Text;
         <?php endforeach; ?>
     </div>
 <?php else: ?>
-    <div class="alert alert-info">
+    <div class="alert alert-warning">
         <?php echo Text::_('MOD_SERVICOS_NO_ITEMS_FOUND'); ?>
     </div>
 <?php endif; ?>
