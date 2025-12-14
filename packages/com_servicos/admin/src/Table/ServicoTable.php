@@ -8,6 +8,7 @@ class ServicoTable extends Table
     public function __construct(\Joomla\Database\DatabaseDriver $db)
     {
         $this->typeAlias = 'com_servicos.servico';
+        $this->setColumnAlias('published', 'state');
         parent::__construct('#__servicos_services', 'id', $db);
     }
     public function check()

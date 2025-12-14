@@ -29,7 +29,17 @@ use Joomla\CMS\Layout\LayoutHelper;
                         <?php echo HTMLHelper::_('jgrid.published', $item->state, $i, 'servicos.', true); ?>
                     </td>
                     <td class="text-center">
-                        <?php echo HTMLHelper::_('jgrid.published', $item->featured, $i, 'servicos.', true, 'cb', $item->publish_up ?? null, $item->publish_down ?? null, 'featured'); ?>
+                        <?php
+                        $icon = $item->featured ? 'fas fa-star' : 'far fa-star';
+                        $class = $item->featured ? 'active' : '';
+                        $task = $item->featured ? 'servicos.unfeatured' : 'servicos.featured';
+                        ?>
+                        <a href="javascript:void(0);"
+                            onclick="return Joomla.listItemTask('cb<?php echo $i; ?>', '<?php echo $task; ?>')"
+                            class="btn btn-micro <?php echo $class; ?>"
+                            title="<?php echo HTMLHelper::_('tooltip', 'Toggle featured'); ?>">
+                            <i class="<?php echo $icon; ?>" aria-hidden="true"></i>
+                        </a>
                     </td>
                     <td class="text-center">
                         <?php echo (int) $item->hits; ?>

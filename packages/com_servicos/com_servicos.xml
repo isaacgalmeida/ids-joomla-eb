@@ -25,6 +25,7 @@
             <folder>sql</folder>
             <folder>services</folder>
             <folder>forms</folder>
+            <folder>language</folder>
             <file>access.xml</file>
             <file>config.xml</file>
         </files>
