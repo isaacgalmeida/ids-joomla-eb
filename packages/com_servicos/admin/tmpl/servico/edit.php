@@ -9,6 +9,7 @@ HTMLHelper::_('behavior.formvalidator');
         <div class="col-md-10">
             <?php echo $this->form->renderField('title'); ?>
             <?php echo $this->form->renderField('alias'); ?>
+            <?php echo $this->form->renderField('icon'); ?>
             <?php echo $this->form->renderField('introtext'); ?>
             <?php echo $this->form->renderField('target_audience'); ?>
             <?php echo $this->form->renderField('steps'); ?>

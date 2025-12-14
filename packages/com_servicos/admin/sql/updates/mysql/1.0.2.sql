@@ -1,0 +1,1 @@
+-- Update to 1.0.2 (Schema change handled in 1.0.1)

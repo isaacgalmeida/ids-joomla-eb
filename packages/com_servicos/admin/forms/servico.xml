@@ -4,6 +4,22 @@
         <field name="id" type="number" default="0" readonly="true" class="readonly" label="ID"/>
         <field name="title" type="text" label="Título do Serviço" required="true" class="input-xxlarge"/>
         <field name="alias" type="text" label="Alias"/>
+        <field name="icon" type="list" label="Ícone" description="Escolha um ícone do GovtBR DS">
+            <option value="">Selecione...</option>
+            <option value="fas fa-graduation-cap">Educação (Capelo)</option>
+            <option value="fas fa-briefcase">Trabalho (Maleta)</option>
+            <option value="fas fa-university">Finanças (Banco)</option>
+            <option value="fas fa-heartbeat">Saúde (Coração)</option>
+            <option value="fas fa-leaf">Ambiente (Folha)</option>
+            <option value="fas fa-tractor">Agricultura (Trator)</option>
+            <option value="fas fa-gavel">Justiça (Martelo)</option>
+            <option value="fas fa-paw">Pet (Pata)</option>
+            <option value="fas fa-file-invoice-dollar">Imposto (Fatura)</option>
+            <option value="fas fa-signature">Assinatura (Caneta)</option>
+            <option value="fas fa-id-card">Identidade (Cartão)</option>
+            <option value="fas fa-car">Transporte (Carro)</option>
+            <option value="fas fa-home">Habitação (Casa)</option>
+        </field>
         <field name="featured" type="radio" label="Destaque Home?" default="0" class="btn-group btn-group-yesno">
             <option value="1">Sim</option><option value="0">Não</option>
         </field>

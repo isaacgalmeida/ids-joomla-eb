@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" method="upgrade">
     <name>com_servicos</name>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <description>Catálogo de Serviços Públicos - Padrão GOV.BR</description>
     <author>Joomla Dev</author>
-    <creationDate>2025-06-01</creationDate>
-    <copyright>(C) 2025 GovBR. All rights reserved.</copyright>
-    <license>GNU General Public License version 2 or later</license>
+    <creationDate>December 2025</creationDate>
+    <copyright>Copyright (C) 2025. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <namespace path="src">Joomla\Component\Servicos</namespace>
     <files folder="site/">
         <folder>src</folder>

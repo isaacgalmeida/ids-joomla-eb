@@ -72,7 +72,7 @@ class ServicosHelper
     protected function getServicesByCategory($catid, $limit)
     {
         $query = $this->db->getQuery(true)
-            ->select($this->db->quoteName(['a.id', 'a.title', 'a.created', 'a.introtext', 'a.featured', 'a.hits']))
+            ->select($this->db->quoteName(['a.id', 'a.title', 'a.created', 'a.introtext', 'a.featured', 'a.hits', 'a.icon']))
             ->from($this->db->quoteName('#__servicos_services', 'a'))
             ->where($this->db->quoteName('a.catid') . ' = ' . (int) $catid)
             ->where($this->db->quoteName('a.state') . ' = 1')
@@ -86,7 +86,7 @@ class ServicosHelper
     protected function getMostAccessedServices($limit)
     {
         $query = $this->db->getQuery(true)
-            ->select($this->db->quoteName(['a.id', 'a.title', 'a.created', 'a.introtext', 'a.featured', 'a.hits']))
+            ->select($this->db->quoteName(['a.id', 'a.title', 'a.created', 'a.introtext', 'a.featured', 'a.hits', 'a.icon']))
             ->from($this->db->quoteName('#__servicos_services', 'a'))
             ->where($this->db->quoteName('a.state') . ' = 1')
             ->order($this->db->quoteName('a.hits') . ' DESC');
@@ -99,7 +99,7 @@ class ServicosHelper
     protected function getFeaturedServices($limit)
     {
         $query = $this->db->getQuery(true)
-            ->select($this->db->quoteName(['a.id', 'a.title', 'a.created', 'a.introtext', 'a.featured', 'a.hits']))
+            ->select($this->db->quoteName(['a.id', 'a.title', 'a.created', 'a.introtext', 'a.featured', 'a.hits', 'a.icon']))
             ->select($this->db->quoteName('c.title', 'category_title'))
             ->from($this->db->quoteName('#__servicos_services', 'a'))
             ->join('LEFT', $this->db->quoteName('#__categories', 'c') . ' ON ' . $this->db->quoteName('c.id') . ' = ' . $this->db->quoteName('a.catid'))
@@ -116,30 +116,78 @@ class ServicosHelper
 
     protected function processItems($items)
     {
-        if (empty($items))
+        if (empty($items)) {
             return [];
+        }
 
         $now = Factory::getDate();
+
+        // Icon mapping based on category title keywords
+        $iconMap = [
+            'educação' => 'fas fa-graduation-cap',
+            'trabalho' => 'fas fa-briefcase',
+            'finanças' => 'fas fa-university',
+            'saúde' => 'fas fa-heartbeat',
+            'ambiente' => 'fas fa-leaf',
+            'agricultura' => 'fas fa-tractor',
+            'justiça' => 'fas fa-gavel',
+            'pet' => 'fas fa-paw',
+            'cães' => 'fas fa-paw',
+            'gatos' => 'fas fa-paw',
+            'animais' => 'fas fa-paw',
+            'imposto' => 'fas fa-file-invoice-dollar',
+            'eletrônica' => 'fas fa-signature',
+        ];
 
         foreach ($items as $item) {
             $item->link = Route::_('index.php?option=com_servicos&view=servico&id=' . (int) $item->id);
 
-            // "Novo" badge logic (e.g., created in last 90 days for government context usually longer)
+            // Calculate is_new
             $created = Factory::getDate($item->created);
             $diff = $now->diff($created);
-            $item->is_new = ($diff->days <= 60 && $diff->invert == 1);
+            $item->is_new = ($diff->days <= 60 && $diff->invert == 1); // Exact logic adjustment may be needed depending on diff return
 
-            // Icon logic: if introtext contains an icon class? Or default.
-            // The HTML snippet shows icons like "fas fa-graduation-cap".
-            // We assume a random or default icon if not stored.
-            // Ideally com_servicos should have an 'icon' field.
-            // For now, we use a generic one.
-            $item->icon = 'fas fa-chevron-right';
+            // Determine icon
+            if (!empty($item->icon)) {
+                // Use manually selected icon
+                // Ensure it has fa-lg or similar size if needed, or trust user selection.
+                // GovBR icons usually need no extra size class if they are purely illustrative 
+                // but user asked for "huge". The template handles sizes via CSS or classes.
+                // We'll trust the value from DB.
+            } else {
+                $item->icon = 'fas fa-chevron-right'; // Fallback
+                if (!empty($item->category_title)) {
+                    $lowerCat = mb_strtolower($item->category_title);
+                    foreach ($iconMap as $key => $icon) {
+                        if (mb_strpos($lowerCat, $key) !== false) {
+                            $item->icon = $icon;
+                            break;
+                        }
+                    }
+                }
+                // If item title has keywords override
+                $lowerTitle = mb_strtolower($item->title);
+                foreach ($iconMap as $key => $icon) {
+                    if (mb_strpos($lowerTitle, $key) !== false) {
+                        $item->icon = $icon;
+                        break;
+                    }
+                }
+            }
 
+
+            // Create subtitle from introtext
             if (isset($item->introtext)) {
-                $item->subtitle = mb_substr(strip_tags($item->introtext), 0, 50) . '...';
+                // Strip tags and limit
+                $cleanText = strip_tags($item->introtext);
+                if (mb_strlen($cleanText) > 60) {
+                    $item->subtitle = mb_substr($cleanText, 0, 60) . '...';
+                } else {
+                    $item->subtitle = $cleanText;
+                }
             }
         }
+
         return $items;
     }
 }

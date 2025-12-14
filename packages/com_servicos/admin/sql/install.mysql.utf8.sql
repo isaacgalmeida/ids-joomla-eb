@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS `#__servicos_services` (
     `steps` mediumtext NOT NULL COMMENT 'Etapas',
     `other_info` mediumtext NOT NULL COMMENT 'Outras Info',
     `state` tinyint(3) NOT NULL DEFAULT 0,
+    `icon` varchar(50) NOT NULL DEFAULT '',
     `catid` int(10) unsigned NOT NULL DEFAULT 0,
     `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
     `created_by` int(10) unsigned NOT NULL DEFAULT 0,
