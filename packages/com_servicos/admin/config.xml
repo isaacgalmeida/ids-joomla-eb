@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset name="component" label="Configurações">
+        <field name="show_share" type="radio" label="Mostrar Compartilhar" default="1" class="btn-group btn-group-yesno">
+            <option value="1">JYES</option><option value="0">JNO</option>
+        </field>
+    </fieldset>
+</config>

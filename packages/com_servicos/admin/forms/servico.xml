@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset name="details" label="Detalhes">
+        <field name="id" type="number" default="0" readonly="true" class="readonly" label="ID"/>
+        <field name="title" type="text" label="Título do Serviço" required="true" class="input-xxlarge"/>
+        <field name="alias" type="text" label="Alias"/>
+        <field name="featured" type="radio" label="Destaque Home?" default="0" class="btn-group btn-group-yesno">
+            <option value="1">Sim</option><option value="0">Não</option>
+        </field>
+        <field name="catid" type="category" extension="com_servicos" label="Categoria" required="true"/>
+        <field name="introtext" type="editor" label="O que é?" height="200" buttons="true"/>
+        <field name="target_audience" type="editor" label="Quem pode utilizar?" height="150" buttons="true"/>
+        <field name="steps" type="editor" label="Etapas" height="300" buttons="true"/>
+        <field name="other_info" type="editor" label="Outras Informações" height="150" buttons="true"/>
+        <field name="tags" type="tag" label="Tags" multiple="true" mode="nested"/>
+        <field name="state" type="list" label="Estado" default="1">
+            <option value="1">Publicado</option><option value="0">Despublicado</option><option value="-2">Lixeira</option>
+        </field>
+    </fieldset>
+</form>
