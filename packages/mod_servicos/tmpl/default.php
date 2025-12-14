@@ -43,4 +43,8 @@ use Joomla\CMS\Language\Text;
             </div>
         <?php endforeach; ?>
     </div>
+<?php else: ?>
+    <div class="alert alert-info">
+        <?php echo Text::_('MOD_SERVICOS_NO_ITEMS_FOUND'); ?>
+    </div>
 <?php endif; ?>
