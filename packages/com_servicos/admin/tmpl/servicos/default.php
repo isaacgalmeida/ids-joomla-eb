@@ -4,7 +4,8 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Layout\LayoutHelper;
 ?>
-<form action="<?php echo Route::_('index.php?option=com_servicos&view=servicos'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_servicos&view=servicos'); ?>" method="post" name="adminForm"
+    id="adminForm">
     <?php echo LayoutHelper::render('joomla.searchtools.default', ['view' => $this]); ?>
     <table class="table table-striped">
         <thead>
@@ -17,15 +18,20 @@ use Joomla\CMS\Layout\LayoutHelper;
             </tr>
         </thead>
         <tbody>
-        <?php foreach ($this->items as $i => $item) : ?>
-            <tr>
-                <td><?php echo HTMLHelper::_('grid.id', $i, $item->id); ?></td>
-                <td><a href="<?php echo Route::_('index.php?option=com_servicos&task=servico.edit&id=' . $item->id); ?>"><?php echo $this->escape($item->title); ?></a></td>
-                <td class="text-center"><?php echo HTMLHelper::_('jgrid.published', $item->state, $i, 'servicos.', true); ?></td>
-                <td class="text-center"><?php echo HTMLHelper::_('jgrid.isfeatured', $item->featured, $i, 'servicos.', true); ?></td>
-                <td><?php echo $item->id; ?></td>
-            </tr>
-        <?php endforeach; ?>
+            <?php foreach ($this->items as $i => $item): ?>
+                <tr>
+                    <td><?php echo HTMLHelper::_('grid.id', $i, $item->id); ?></td>
+                    <td><a
+                            href="<?php echo Route::_('index.php?option=com_servicos&task=servico.edit&id=' . $item->id); ?>"><?php echo $this->escape($item->title); ?></a>
+                    </td>
+                    <td class="text-center">
+                        <?php echo HTMLHelper::_('jgrid.published', $item->state, $i, 'servicos.', true); ?></td>
+                    <td class="text-center">
+                        <?php echo HTMLHelper::_('jgrid.published', $item->featured, $i, 'servicos.', true, 'cb', $item->publish_up ?? null, $item->publish_down ?? null, 'featured'); ?>
+                    </td>
+                    <td><?php echo $item->id; ?></td>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
     <input type="hidden" name="task" value="" />
