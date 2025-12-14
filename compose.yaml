@@ -5,18 +5,28 @@ services:
     environment:
       MYSQL_DATABASE: joomla_db
       MYSQL_USER: joomla
-      MYSQL_PASSWORD: examplepass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MYSQL_PASSWORD: JJ9LEm6u*#9qH@
+      MYSQL_ROOT_PASSWORD: JJ9LEm6u*#9qH@
     volumes:
       - db_data:/var/lib/mysql
     networks:
       - joomla_network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-uroot",
+          "-pJJ9LEm6u*#9qH@",
+        ]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 30s
+
   joomla:
     build:
       context: .
@@ -27,21 +37,22 @@ services:
     environment:
       JOOMLA_DB_HOST: db
       JOOMLA_DB_USER: joomla
-      JOOMLA_DB_PASSWORD: examplepass
+      JOOMLA_DB_PASSWORD: JJ9LEm6u*#9qH@
       JOOMLA_DB_NAME: joomla_db
       JOOMLA_SITE_NAME: Joomla
-      JOOMLA_ADMIN_USER: Joomla Hero
+      JOOMLA_ADMIN_USER: "Joomla Hero"
       JOOMLA_ADMIN_USERNAME: joomla
-      JOOMLA_ADMIN_PASSWORD: joomla@secured
+      JOOMLA_ADMIN_PASSWORD: JoomlaAdmin@2025
       JOOMLA_ADMIN_EMAIL: joomla@example.com
     volumes:
       - joomla_data:/var/www/html
     networks:
       - joomla_network
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      test: ["CMD", "curl", "-f", "http://localhost/"]
       interval: 15s
       timeout: 5s
       retries: 3
