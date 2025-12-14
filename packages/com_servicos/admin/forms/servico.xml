@@ -7,7 +7,7 @@
         <field name="featured" type="radio" label="Destaque Home?" default="0" class="btn-group btn-group-yesno">
             <option value="1">Sim</option><option value="0">Não</option>
         </field>
-        <field name="catid" type="category" extension="com_content" label="Categoria" required="true"/>
+        <field name="catid" type="category" extension="com_servicos" label="Categoria" required="true"/>
         <field name="introtext" type="editor" label="O que é?" height="200" buttons="true"/>
         <field name="target_audience" type="editor" label="Quem pode utilizar?" height="150" buttons="true"/>
         <field name="steps" type="editor" label="Etapas" height="300" buttons="true"/>

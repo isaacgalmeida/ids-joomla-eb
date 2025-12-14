@@ -12,16 +12,7 @@ services:
     networks:
       - joomla_network
     healthcheck:
-      test:
-        [
-          "CMD",
-          "mysqladmin",
-          "ping",
-          "-h",
-          "localhost",
-          "-uroot",
-          "-pJJ9LEm6u*#9qH@",
-        ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pJJ9LEm6u*#9qH@" ]
       interval: 30s
       timeout: 5s
       retries: 3
@@ -46,13 +37,15 @@ services:
       JOOMLA_ADMIN_EMAIL: joomla@example.com
     volumes:
       - joomla_data:/var/www/html
+      # Mapeia a pasta local "packages" para "/var/www/html/tmp" no container
+      - ./packages:/var/www/html/tmp
     networks:
       - joomla_network
     depends_on:
       db:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/"]
+      test: [ "CMD", "curl", "-f", "http://localhost/" ]
       interval: 15s
       timeout: 5s
       retries: 3
@@ -61,6 +54,7 @@ services:
 volumes:
   joomla_data:
   db_data:
+
 
 networks:
   joomla_network:

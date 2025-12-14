@@ -12,8 +12,13 @@
         <folder>src</folder>
         <folder>tmpl</folder>
     </files>
+    <scriptfile>script.php</scriptfile>
     <administration>
         <menu img="class:briefcase">Serviços GOV.BR</menu>
+        <submenu>
+            <menu link="option=com_servicos&amp;view=servicos">Serviços</menu>
+            <menu link="option=com_categories&amp;view=categories&amp;extension=com_servicos">Categorias</menu>
+        </submenu>
         <files folder="admin/">
             <folder>src</folder>
             <folder>tmpl</folder>

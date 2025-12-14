@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" client="site" method="upgrade">
+	<name>Serviços</name>
+	<version>1.1.0</version>
+	<description>MOD_SERVICOS_XML_DESCRIPTION</description>
+	<author>Gov.br</author>
+	<creationDate>December 2025</creationDate>
+	<copyright>(C) 2025 Isaac</copyright>
+	<license>GNU General Public License version 2 or later</license>
+	<namespace>Joomla\Module\Servicos</namespace>
+	<files>
+		<filename module="mod_servicos">mod_servicos.xml</filename>
+		<folder>services</folder>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+		<folder>language</folder>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="show_hits"
+					type="radio"
+					label="Mostrar Mais Acessados?"
+					description="Exibe um card para listagem de mais acessados ao lado das categorias"
+					default="1"
+					class="btn-group btn-group-yesno"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

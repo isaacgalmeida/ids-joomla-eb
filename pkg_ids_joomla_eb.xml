@@ -40,6 +40,7 @@
         <file type="module" id="mod_instafeed" client="site">mod_instafeed.zip</file>
         <file type="module" id="mod_links" client="site">mod_links.zip</file>
         <file type="module" id="mod_readmorenews" client="site">mod_readmorenews.zip</file>
+        <file type="module" id="mod_servicos" client="site">mod_servicos.zip</file>
         <file type="module" id="mod_videosiframe" client="site">mod_videosiframe.zip</file>
     </files>
     

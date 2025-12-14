@@ -5,13 +5,13 @@ use Joomla\CMS\Dispatcher\ComponentDispatcherFactoryInterface;
 use Joomla\CMS\Extension\ComponentInterface;
 use Joomla\CMS\Extension\Service\Provider\ComponentDispatcherFactory;
 use Joomla\CMS\Extension\Service\Provider\MVCFactory;
+use Joomla\CMS\Extension\Service\Provider\CategoryFactory;
 use Joomla\CMS\MVC\Factory\MVCFactoryInterface;
 use Joomla\Component\Servicos\Administrator\Extension\ServicosComponent;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 
-return new class implements ServiceProviderInterface
-{
+return new class implements ServiceProviderInterface {
     public function register(Container $container)
     {
         // 1. Registra a fábrica de MVC para este namespace
@@ -20,6 +20,9 @@ return new class implements ServiceProviderInterface
         // 2. Registra a fábrica de Dispatcher para este namespace
         $container->registerServiceProvider(new ComponentDispatcherFactory('Joomla\\Component\\Servicos'));
 
+        // Registra a fábrica de Categorias (Permite integração com com_categories)
+        $container->registerServiceProvider(new CategoryFactory('Joomla\\Component\\Servicos'));
+
         // 3. Define a classe principal do componente
         $container->set(
             ComponentInterface::class,
@@ -27,9 +30,9 @@ return new class implements ServiceProviderInterface
                 $component = new ServicosComponent(
                     $container->get(ComponentDispatcherFactoryInterface::class)
                 );
-                
+
                 $component->setMVCFactory($container->get(MVCFactoryInterface::class));
-                
+
                 return $component;
             }
         );
