@@ -32,6 +32,7 @@
         <!-- Componentes -->
         <file type="component" id="com_aniversariantes">com_aniversariantes.zip</file>
         <file type="component" id="com_pagtesouro">com_pagtesouro.zip</file>
+        <file type="component" id="com_servicos">com_servicos.zip</file>
         
         <!-- Módulos -->
         <file type="module" id="mod_aniver" client="site">mod_aniver.zip</file>
