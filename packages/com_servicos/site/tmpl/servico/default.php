@@ -9,10 +9,11 @@ use Joomla\CMS\Factory;
     }
 
     /* Hide native summary marker */
-    .br-accordion details.item > summary {
+    .br-accordion details.item>summary {
         list-style: none;
     }
-    .br-accordion details.item > summary::-webkit-details-marker {
+
+    .br-accordion details.item>summary::-webkit-details-marker {
         display: none;
     }
 
@@ -28,7 +29,8 @@ use Joomla\CMS\Factory;
 
     /* Ensure styles match GovBR DS for the header */
     .br-accordion .item .header {
-        display: flex; /* Ensure it stays flex as summary might default to list-item */
+        display: flex;
+        /* Ensure it stays flex as summary might default to list-item */
         align-items: center;
         width: 100%;
         border: none;
@@ -36,7 +38,8 @@ use Joomla\CMS\Factory;
         padding: 1rem;
         cursor: pointer;
         text-align: left;
-        outline: none; /* Focus ring handled by theme or browser */
+        outline: none;
+        /* Focus ring handled by theme or browser */
     }
 
     .br-accordion .item .header .icon {
@@ -49,11 +52,19 @@ use Joomla\CMS\Factory;
         <div class="col-12">
             <div class="br-breadcrumb">
                 <ul class="crumb-list">
-                    <li class="crumb home"><a href="<?php echo \Joomla\CMS\Uri\Uri::root(); ?>"><i
-                                class="fas fa-home"></i><span>Início</span></a></li>
-                    <li class="crumb"><i class="fas fa-chevron-right"></i><span>Serviços</span></li>
-                    <li class="crumb"><i
-                            class="fas fa-chevron-right"></i><span><?php echo $this->escape($this->item->title); ?></span>
+                    <li class="crumb home">
+                        <a class="br-button circle" href="<?php echo \Joomla\CMS\Uri\Uri::root(); ?>">
+                            <span class="sr-only">Página inicial</span>
+                            <i class="fas fa-home"></i>
+                        </a>
+                    </li>
+                    <li class="crumb">
+                        <i class="icon fas fa-chevron-right"></i>
+                        <span>Serviços</span>
+                    </li>
+                    <li class="crumb" data-active="active">
+                        <i class="icon fas fa-chevron-right"></i>
+                        <span aria-current="page"><?php echo $this->escape($this->item->title); ?></span>
                     </li>
                 </ul>
             </div>
@@ -140,8 +151,8 @@ use Joomla\CMS\Factory;
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Ensure chevrons exist (using browser native behavior, but visual icon is ours)
-         const details = document.querySelectorAll('.br-accordion details.item');
-         details.forEach(detail => {
+        const details = document.querySelectorAll('.br-accordion details.item');
+        details.forEach(detail => {
             const summary = detail.querySelector('summary');
             let chevron = summary.querySelector('.fa-chevron-down, .fa-chevron-up');
             if (!chevron) {
@@ -150,6 +161,6 @@ use Joomla\CMS\Factory;
                 chevron.setAttribute('aria-hidden', 'true');
                 summary.appendChild(chevron);
             }
-         });
+        });
     });
 </script>
