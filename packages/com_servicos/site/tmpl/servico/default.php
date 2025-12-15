@@ -3,6 +3,47 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Factory;
 ?>
+<style>
+    .br-accordion .item:not([active]) .content {
+        display: none !important;
+    }
+
+    /* Hide native summary marker */
+    .br-accordion details.item > summary {
+        list-style: none;
+    }
+    .br-accordion details.item > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    /* Target open state for rotation */
+    .br-accordion details.item[open] .header .icon {
+        transform: rotate(180deg) !important;
+    }
+
+    /* Ensure content is visible when open (overriding any potential display:none) */
+    .br-accordion details.item[open] .content {
+        display: block !important;
+    }
+
+    /* Ensure styles match GovBR DS for the header */
+    .br-accordion .item .header {
+        display: flex; /* Ensure it stays flex as summary might default to list-item */
+        align-items: center;
+        width: 100%;
+        border: none;
+        background: none;
+        padding: 1rem;
+        cursor: pointer;
+        text-align: left;
+        outline: none; /* Focus ring handled by theme or browser */
+    }
+
+    .br-accordion .item .header .icon {
+        margin-right: 1rem;
+        transition: transform 0.3s;
+    }
+</style>
 <div class="container-lg my-5">
     <div class="row">
         <div class="col-12">
@@ -39,48 +80,45 @@ use Joomla\CMS\Factory;
                 <div class="br-accordion" id="accordion-servico">
 
                     <?php if ($this->item->introtext): ?>
-                        <div class="item active">
-                            <button class="header" type="button" aria-controls="id-what" aria-expanded="true"
-                                data-toggle="accordion" data-target="id-what" data-group="accordion-servico">
+                        <details class="item" open>
+                            <summary class="header">
                                 <span class="icon"><i class="fas fa-info-circle"></i></span>
                                 <span class="title">O que é?</span>
-                            </button>
-                            <div class="content" id="id-what" aria-hidden="false">
+                            </summary>
+                            <div class="content">
                                 <div class="front-padding">
                                     <?php echo $this->item->introtext; ?>
                                 </div>
                             </div>
-                        </div>
+                        </details>
                     <?php endif; ?>
 
                     <?php if ($this->item->target_audience): ?>
-                        <div class="item">
-                            <button class="header" type="button" aria-controls="id-who" aria-expanded="false"
-                                data-toggle="accordion" data-target="id-who" data-group="accordion-servico">
+                        <details class="item">
+                            <summary class="header">
                                 <span class="icon"><i class="fas fa-users"></i></span>
                                 <span class="title">Quem pode utilizar?</span>
-                            </button>
-                            <div class="content" id="id-who" aria-hidden="true" hidden>
+                            </summary>
+                            <div class="content">
                                 <div class="front-padding">
                                     <div class="br-list"><?php echo $this->item->target_audience; ?></div>
                                 </div>
                             </div>
-                        </div>
+                        </details>
                     <?php endif; ?>
 
                     <?php if ($this->item->steps): ?>
-                        <div class="item">
-                            <button class="header" type="button" aria-controls="id-steps" aria-expanded="false"
-                                data-toggle="accordion" data-target="id-steps" data-group="accordion-servico">
+                        <details class="item">
+                            <summary class="header">
                                 <span class="icon"><i class="fas fa-list-ol"></i></span>
                                 <span class="title">Etapas</span>
-                            </button>
-                            <div class="content" id="id-steps" aria-hidden="true" hidden>
+                            </summary>
+                            <div class="content">
                                 <div class="front-padding">
                                     <div class="br-list"><?php echo $this->item->steps; ?></div>
                                 </div>
                             </div>
-                        </div>
+                        </details>
                     <?php endif; ?>
 
                 </div>
@@ -100,56 +138,18 @@ use Joomla\CMS\Factory;
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const triggers = document.querySelectorAll('[data-toggle="accordion"]');
-        
-        triggers.forEach(trigger => {
-            // Check and append chevron if missing
-            let chevron = trigger.querySelector('.fa-chevron-down, .fa-chevron-up');
+    document.addEventListener('DOMContentLoaded', function () {
+        // Ensure chevrons exist (using browser native behavior, but visual icon is ours)
+         const details = document.querySelectorAll('.br-accordion details.item');
+         details.forEach(detail => {
+            const summary = detail.querySelector('summary');
+            let chevron = summary.querySelector('.fa-chevron-down, .fa-chevron-up');
             if (!chevron) {
                 chevron = document.createElement('i');
                 chevron.classList.add('fas', 'fa-chevron-down', 'ml-auto');
                 chevron.setAttribute('aria-hidden', 'true');
-                trigger.appendChild(chevron);
+                summary.appendChild(chevron);
             }
-
-            const parentItem = trigger.closest('.item');
-            
-            // Sync initial state
-            if (parentItem && parentItem.classList.contains('active')) {
-                chevron.classList.remove('fa-chevron-down');
-                chevron.classList.add('fa-chevron-up');
-            }
-
-            trigger.addEventListener('click', function(event) {
-                event.preventDefault();
-                
-                const targetId = this.getAttribute('data-target');
-                const targetContent = document.getElementById(targetId);
-                const item = this.closest('.item');
-                
-                if (!targetContent || !item) return;
-
-                const isActive = item.classList.contains('active');
-
-                if (isActive) {
-                    // Close
-                    item.classList.remove('active');
-                    targetContent.setAttribute('hidden', '');
-                    this.setAttribute('aria-expanded', 'false');
-                    targetContent.setAttribute('aria-hidden', 'true');
-                    chevron.classList.remove('fa-chevron-up');
-                    chevron.classList.add('fa-chevron-down');
-                } else {
-                    // Open
-                    item.classList.add('active');
-                    targetContent.removeAttribute('hidden');
-                    this.setAttribute('aria-expanded', 'true');
-                    targetContent.setAttribute('aria-hidden', 'false');
-                    chevron.classList.remove('fa-chevron-down');
-                    chevron.classList.add('fa-chevron-up');
-                }
-            });
-        });
+         });
     });
 </script>
