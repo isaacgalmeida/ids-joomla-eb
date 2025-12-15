@@ -13,13 +13,11 @@ $data = $items;
     <!-- COLUMN 1: RECOMENDADOS -->
     <div class="col-12 col-md-4 mb-3">
         <div class="br-card h-100">
-            <div class="card-header">
-                <div class="d-flex align-items-center justify-content-center text-center">
-                    <i class="fas fa-thumbs-up mr-2 text-secondary-07" aria-hidden="true" style="font-size: 1.5em;"></i>
-                    <div class="text-weight-semi-bold text-up-02">
-                        <?php echo Text::_('MOD_SERVICOS_OPTION_RECOMMENDED'); ?>
-                    </div>
-                </div>
+            <div class="card-header text-center">
+                <i class="fas fa-thumbs-up mr-2 text-secondary-07" aria-hidden="true" style="font-size: 1.5em;"></i>
+                <span class="text-weight-semi-bold text-up-02">
+                    <?php echo Text::_('MOD_SERVICOS_OPTION_RECOMMENDED'); ?>
+                </span>
             </div>
             <div class="card-content p-0">
                 <div class="br-list" role="list">
@@ -54,12 +52,10 @@ $data = $items;
     <!-- COLUMN 2: MAIS ACESSADOS -->
     <div class="col-12 col-md-4 mb-3">
         <div class="br-card h-100">
-            <div class="card-header">
-                <div class="d-flex align-items-center justify-content-center text-center">
-                    <i class="fas fa-fire mr-2 text-secondary-07" aria-hidden="true" style="font-size: 1.5em;"></i>
-                    <div class="text-weight-semi-bold text-up-02"><?php echo Text::_('MOD_SERVICOS_OPTION_HITS'); ?>
-                    </div>
-                </div>
+            <div class="card-header text-center">
+                <i class="fas fa-fire mr-2 text-secondary-07" aria-hidden="true" style="font-size: 1.5em;"></i>
+                <span class="text-weight-semi-bold text-up-02"><?php echo Text::_('MOD_SERVICOS_OPTION_HITS'); ?>
+                </span>
             </div>
             <div class="card-content p-0">
                 <div class="br-list" role="list">
@@ -95,13 +91,11 @@ $data = $items;
     <!-- COLUMN 3: DESTAQUE -->
     <div class="col-12 col-md-4 mb-3">
         <div class="br-card h-100">
-            <div class="card-header">
-                <div class="d-flex align-items-center justify-content-center text-center">
-                    <i class="fas fa-star mr-2 text-secondary-07" aria-hidden="true" style="font-size: 1.5em;"></i>
-                    <div class="text-weight-semi-bold text-up-02">
-                        <?php echo Text::_('MOD_SERVICOS_OPTION_FEATURED'); ?>
-                    </div>
-                </div>
+            <div class="card-header text-center">
+                <i class="fas fa-star mr-2 text-secondary-07" aria-hidden="true" style="font-size: 1.5em;"></i>
+                <span class="text-weight-semi-bold text-up-02">
+                    <?php echo Text::_('MOD_SERVICOS_OPTION_FEATURED'); ?>
+                </span>
             </div>
             <div class="card-content p-0">
                 <div class="br-list" role="list">
